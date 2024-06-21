@@ -13,11 +13,6 @@ import 'package:movie_app_adv/features/Auth/presentation/views/widgets/terms_and
 import 'package:movie_app_adv/features/Auth/presentation/views/widgets/text_form_field.dart';
 
 class LoginViewBody extends StatelessWidget {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-
-  var formKey = GlobalKey<FormState>();
-
   LoginViewBody({super.key});
 
   @override
@@ -34,7 +29,7 @@ class LoginViewBody extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
             child: Form(
-              key: formKey,
+              key: context.read<LoginCubit>().formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -49,13 +44,14 @@ class LoginViewBody extends StatelessWidget {
                   ),
                   verticalSpace(35),
                   CustomTextFormField(
-                    textcontroller: emailController,
+                    textcontroller: context.read<LoginCubit>().emailController,
                     hintText: 'email',
                     obscureText: false,
                   ),
                   verticalSpace(20),
                   CustomTextFormField(
-                    textcontroller: passwordController,
+                    textcontroller:
+                        context.read<LoginCubit>().passwordController,
                     hintText: 'password',
                     obscureText: true,
                   ),
@@ -72,11 +68,12 @@ class LoginViewBody extends StatelessWidget {
                       : CustomButton(
                           text: 'Login',
                           onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              context.read<LoginCubit>().signIn(
-                                    emailController.text,
-                                    passwordController.text,
-                                  );
+                            if (context
+                                .read<LoginCubit>()
+                                .formKey
+                                .currentState!
+                                .validate()) {
+                              context.read<LoginCubit>().signIn();
                             }
                           }),
                   verticalSpace(20),

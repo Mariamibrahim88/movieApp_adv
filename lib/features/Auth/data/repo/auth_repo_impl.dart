@@ -13,7 +13,7 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, SignInModel>> signIn(
-      String email, String password) async {
+      {required String email, required String password}) async {
     try {
       final response = await apiService.post('/signin', {
         'email': email,
@@ -33,7 +33,10 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, SignUpModel>> signUp(
-      String email, String password, String name, int age) async {
+      {required String email,
+      required String password,
+      required String name,
+      required int age}) async {
     try {
       final response = await apiService.post('/signup', {
         'email': email,

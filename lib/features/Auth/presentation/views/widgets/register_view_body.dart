@@ -9,13 +9,6 @@ import 'package:movie_app_adv/features/Auth/presentation/views/widgets/have_an_a
 import 'package:movie_app_adv/features/Auth/presentation/views/widgets/text_form_field.dart';
 
 class RigesterViewBody extends StatelessWidget {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-  var nameController = TextEditingController();
-  var ageController = TextEditingController();
-
-  var formKey = GlobalKey<FormState>();
-
   RigesterViewBody({super.key});
 
   @override
@@ -37,7 +30,7 @@ class RigesterViewBody extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
             child: Form(
-              key: formKey,
+              key: context.read<RegisterCubit>().formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -54,18 +47,21 @@ class RigesterViewBody extends StatelessWidget {
                   CustomTextFormField(
                     hintText: 'name',
                     obscureText: false,
-                    textcontroller: nameController,
+                    textcontroller:
+                        context.read<RegisterCubit>().nameController,
                   ),
                   verticalSpace(20),
                   CustomTextFormField(
                     hintText: 'email',
                     obscureText: false,
-                    textcontroller: emailController,
+                    textcontroller:
+                        context.read<RegisterCubit>().emailController,
                   ),
 
                   verticalSpace(20),
                   CustomTextFormField(
-                    textcontroller: passwordController,
+                    textcontroller:
+                        context.read<RegisterCubit>().passwordController,
                     hintText: 'password',
                     obscureText: true,
                   ),
@@ -73,7 +69,7 @@ class RigesterViewBody extends StatelessWidget {
                   CustomTextFormField(
                     hintText: 'age',
                     obscureText: false,
-                    textcontroller: ageController,
+                    textcontroller: context.read<RegisterCubit>().ageController,
                   ),
                   // const ForgetPassword(),
                   verticalSpace(30),
@@ -85,13 +81,12 @@ class RigesterViewBody extends StatelessWidget {
                       : CustomButton(
                           text: 'Register',
                           onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              context.read<RegisterCubit>().signUp(
-                                    emailController.text,
-                                    passwordController.text,
-                                    nameController.text,
-                                    int.parse(ageController.text),
-                                  );
+                            if (context
+                                .read<RegisterCubit>()
+                                .formKey
+                                .currentState!
+                                .validate()) {
+                              context.read<RegisterCubit>().signUp();
                             }
                           },
                         ),
