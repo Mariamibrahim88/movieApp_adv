@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app_adv/core/utils/functions/service_locator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_app_adv/core/utils/functions/show_snack_bar.dart';
 import 'package:movie_app_adv/core/utils/functions/spacing.dart';
 import 'package:movie_app_adv/core/utils/functions/styles.dart';
-import 'package:movie_app_adv/features/Auth/data/repo/auth_repo_impl.dart';
 import 'package:movie_app_adv/features/Auth/presentation/manager/login_page_cubit/cubit/login_cubit.dart';
 import 'package:movie_app_adv/features/Auth/presentation/views/widgets/custom_button.dart';
 import 'package:movie_app_adv/features/Auth/presentation/views/widgets/dont_have_an_account_text.dart';
@@ -13,13 +12,14 @@ import 'package:movie_app_adv/features/Auth/presentation/views/widgets/terms_and
 import 'package:movie_app_adv/features/Auth/presentation/views/widgets/text_form_field.dart';
 
 class LoginViewBody extends StatelessWidget {
-  LoginViewBody({super.key});
+  const LoginViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
       if (state is LoginInSuccess) {
         ShowSnackBar(context, 'success', Colors.green);
+        GoRouter.of(context).push('/homeView');
       } else if (state is LoginInFailure) {
         ShowSnackBar(context, state.message, Colors.red);
       }
@@ -27,7 +27,7 @@ class LoginViewBody extends StatelessWidget {
       return SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
             child: Form(
               key: context.read<LoginCubit>().formKey,
               child: Column(

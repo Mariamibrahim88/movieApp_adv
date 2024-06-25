@@ -18,6 +18,10 @@ abstract class AppRouter {
     GoRoute(
       path: '/registerView',
       builder: (context, state) => const RegisterView(),
-    )
+    ),
+    // GoRoute(
+    //   path: '/registerView',
+    //   builder: (context, state) => const RegisterView(),
+    // )
   ]);
 }

@@ -19,7 +19,8 @@ class HaveAnAccount extends StatelessWidget {
               style: Styles.textStyle18gr,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  GoRouter.of(context).push('/loginView');
+                  //GoRouter.of(context).push('/loginView');
+                  GoRouter.of(context).pop();
                 },
             )
           ])),

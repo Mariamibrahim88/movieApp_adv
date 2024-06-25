@@ -15,7 +15,7 @@ class RegisterCubit extends Cubit<RegisterCubitState> {
   final nameController = TextEditingController();
   final ageController = TextEditingController();
 
-  final formKey = GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
 
   Future<void> signUp() async {
     emit(RegisterCubitLoading());

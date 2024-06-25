@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_app_adv/core/utils/functions/show_snack_bar.dart';
 import 'package:movie_app_adv/core/utils/functions/spacing.dart';
 import 'package:movie_app_adv/core/utils/functions/styles.dart';
@@ -21,6 +22,7 @@ class RigesterViewBody extends StatelessWidget {
           'Success',
           const Color.fromARGB(255, 110, 171, 112),
         );
+        GoRouter.of(context).push('/homeView');
       } else if (state is RegisterCubitFailure) {
         ShowSnackBar(context, state.message, Colors.red);
       }
