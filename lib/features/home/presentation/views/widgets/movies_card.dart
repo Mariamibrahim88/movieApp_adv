@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_app_adv/constants.dart';
 import 'package:movie_app_adv/features/home/data/model/movie_model.dart';
 
@@ -27,7 +28,7 @@ class MoviesCard extends StatelessWidget {
         height: 115,
         child: GestureDetector(
           onTap: () {
-            // Navigator.pushNamed(context, MovieDetails.id, arguments: movies.id);
+            GoRouter.of(context).push('/detailsView', extra: movies);
           },
           child: Card(
             elevation: 15,

@@ -38,6 +38,9 @@ class MyApp extends StatelessWidget {
           create: (create) =>
               HomePageCubit(getIt.get<HomeRepoImpl>())..getAllMovies(),
         ),
+        // BlocProvider(
+        //   create: (create) => HomePageCubit(getIt.get<HomeRepoImpl>()),
+        // ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

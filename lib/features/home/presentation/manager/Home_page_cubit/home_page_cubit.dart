@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:movie_app_adv/features/home/data/model/movie_model.dart';
 
@@ -18,5 +19,14 @@ class HomePageCubit extends Cubit<HomePageState> {
 
     result.fold((Failure) => emit(HomePageFailure(Failure.message)),
         (movies) => emit(HomePageSuccess(movies)));
+  }
+
+  Future<void> getMoviesById({required String id}) async {
+    emit(HomePageLoading());
+
+    var result = await homeRepo.getMoviesById(id: id);
+
+    result.fold((Failure) => emit(HomePageFailure(Failure.message)),
+        (movies) => emit(HomePageSuccess([movies])));
   }
 }

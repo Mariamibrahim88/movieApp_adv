@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:movie_app_adv/features/home/data/model/movie_model.dart';
 
 class ApiService {
   final _baseUrl = 'https://movie-app-5wo8.onrender.com';
@@ -14,6 +15,14 @@ class ApiService {
   }
 
   Future<List<dynamic>> get({required String endPoint}) async {
+    var response = await _dio.get('$_baseUrl$endPoint');
+    return response.data;
+    //return response;
+  }
+
+  // Future<MovieModel>>
+
+  Future<Map<String, dynamic>> getById({required String endPoint}) async {
     var response = await _dio.get('$_baseUrl$endPoint');
     return response.data;
     //return response;

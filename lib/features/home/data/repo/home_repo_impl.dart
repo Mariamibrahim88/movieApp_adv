@@ -30,4 +30,21 @@ class HomeRepoImpl implements HomeRepo {
       // TODO
     }
   }
+
+  Future<Either<Failure, MovieModel>> getMoviesById(
+      {required String id}) async {
+    try {
+      var response = await apiService.getById(endPoint: '/movies/$id');
+
+      MovieModel movies = MovieModel.fromJson(response);
+      return Right(movies);
+    } catch (e) {
+      print(e);
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+      // TODO
+    }
+  }
 }
