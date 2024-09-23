@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:movie_app_adv/features/home/data/model/movie_model.dart';
 
 class ApiService {
   final _baseUrl = 'https://movie-app-5wo8.onrender.com';

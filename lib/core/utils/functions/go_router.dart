@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_app_adv/core/widgets/custom_error_message.dart';
+import 'package:movie_app_adv/core/widgets/nav_bar.dart';
 import 'package:movie_app_adv/features/Auth/presentation/views/login_view.dart';
 import 'package:movie_app_adv/features/Auth/presentation/views/register_view.dart';
 import 'package:movie_app_adv/features/home/data/repo/home_repo_impl.dart';
@@ -15,6 +15,10 @@ import 'service_locator.dart';
 abstract class AppRouter {
   static final router = GoRouter(routes: [
     GoRoute(path: '/', builder: (context, state) => const SplashView()),
+    GoRoute(
+      path: '/Nav',
+      builder: (context, state) => Nav(),
+    ),
     GoRoute(
       path: '/homeView',
       builder: (context, state) => const HomeView(),

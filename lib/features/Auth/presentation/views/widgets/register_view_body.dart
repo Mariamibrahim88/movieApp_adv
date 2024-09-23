@@ -17,14 +17,14 @@ class RigesterViewBody extends StatelessWidget {
     return BlocConsumer<RegisterCubit, RegisterCubitState>(
         listener: (context, state) {
       if (state is RegisterCubitSuccess) {
-        ShowSnackBar(
+        showSnackBar(
           context,
           'Success',
           const Color.fromARGB(255, 110, 171, 112),
         );
         GoRouter.of(context).push('/homeView');
       } else if (state is RegisterCubitFailure) {
-        ShowSnackBar(context, state.message, Colors.red);
+        showSnackBar(context, state.message, Colors.red);
       }
     }, builder: (context, state) {
       return SafeArea(

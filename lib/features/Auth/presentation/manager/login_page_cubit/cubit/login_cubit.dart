@@ -1,11 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:movie_app_adv/features/Auth/data/repo/auth_repo.dart';
-
-import '../../../../../../core/error/failure.dart';
-import '../../../../data/model/sign_in_model.dart';
 
 part 'login_state.dart';
 

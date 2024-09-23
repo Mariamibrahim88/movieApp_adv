@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -22,7 +23,7 @@ class MoviesCard extends StatelessWidget {
                   //color: Colors.grey.withOpacity(.1),
                   color: KprimaryColor.withOpacity(.0),
                   spreadRadius: 0,
-                  offset: Offset(5, 5))
+                  offset: const Offset(5, 5))
             ]),
         width: double.infinity,
         height: 115,
@@ -40,15 +41,26 @@ class MoviesCard extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8),
-                  child: Image.network(
-                    //'assets/movie3.png',
-                    movies.image,
-                    height: 100,
-                    width: 120,
+                  child: CachedNetworkImage(
+                    imageUrl: movies.image,
+                    height: 100.h,
+                    width: 120.w,
                     fit: BoxFit.cover,
-
-                    //product.image,
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
+
+                  // child: Image.network(
+                  //   //'assets/movie3.png',
+                  //   movies.image,
+                  //   height: 100,
+                  //   width: 120,
+                  //   fit: BoxFit.cover,
+
+                  //   //product.image,
+                  // ),
                 ),
                 //Spacer(),
                 const SizedBox(width: 20),

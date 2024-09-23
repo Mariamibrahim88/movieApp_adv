@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_adv/core/utils/functions/styles.dart';
 
 class CustomErorrMessage extends StatelessWidget {
-  CustomErorrMessage({super.key, this.errorMessage});
+  const CustomErorrMessage({super.key, this.errorMessage});
 
   final errorMessage;
   @override

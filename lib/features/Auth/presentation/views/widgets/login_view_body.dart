@@ -18,10 +18,10 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
       if (state is LoginInSuccess) {
-        ShowSnackBar(context, 'success', Colors.green);
+        showSnackBar(context, 'success', Colors.green);
         GoRouter.of(context).push('/homeView');
       } else if (state is LoginInFailure) {
-        ShowSnackBar(context, state.message, Colors.red);
+        showSnackBar(context, state.message, Colors.red);
       }
     }, builder: (context, state) {
       return SafeArea(
