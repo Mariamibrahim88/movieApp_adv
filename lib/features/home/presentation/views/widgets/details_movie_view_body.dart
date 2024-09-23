@@ -27,7 +27,7 @@ class DetailsViewBody extends StatelessWidget {
               verticalSpace(30),
               GestureDetector(
                 onTap: () async {
-                  launchCustomUrl(context, movies.video!);
+                  launchCustomUrl(context, movies.video);
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),

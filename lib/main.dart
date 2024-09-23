@@ -7,6 +7,8 @@ import 'package:movie_app_adv/core/utils/functions/go_router.dart';
 import 'package:movie_app_adv/core/utils/functions/service_locator.dart';
 import 'package:movie_app_adv/features/Auth/presentation/manager/login_page_cubit/cubit/login_cubit.dart';
 import 'package:movie_app_adv/features/Auth/presentation/manager/register_page_cubit/register_cubit_cubit.dart';
+import 'package:movie_app_adv/features/category/data/repo/category_repo_impl.dart';
+import 'package:movie_app_adv/features/category/presentation/manager/cubit/get_category_cubit.dart';
 import 'package:movie_app_adv/features/home/data/repo/home_repo_impl.dart';
 import 'package:movie_app_adv/features/home/presentation/manager/Home_page_cubit/home_page_cubit.dart';
 
@@ -37,6 +39,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (create) =>
               HomePageCubit(getIt.get<HomeRepoImpl>())..getAllMovies(),
+        ),
+        BlocProvider(
+          create: (create) =>
+              GetCategoryCubit(getIt.get<CategoryRepoImpl>())..getCategories(),
         ),
       ],
       child: MaterialApp.router(
