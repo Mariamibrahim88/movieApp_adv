@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_app_adv/features/category/data/model/category_model.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -26,22 +27,28 @@ class CategoryCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Card(
-              elevation: 10,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              child: Align(
-                alignment: Alignment.center,
-                child: Center(
-                  child: CachedNetworkImage(
-                    imageUrl: categoryModel
-                        .image, // 'https://picsum.photos/250?image=9',
-                    height: 70,
-                    // fit: BoxFit.fitWidth,
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+            GestureDetector(
+              onTap: () {
+                GoRouter.of(context).push('/MovieCardBuilderByCategories',
+                    extra: categoryModel.id);
+              },
+              child: Card(
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Center(
+                    child: CachedNetworkImage(
+                      imageUrl: categoryModel
+                          .image, // 'https://picsum.photos/250?image=9',
+                      height: 70,
+                      // fit: BoxFit.fitWidth,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
                   ),
                 ),
               ),

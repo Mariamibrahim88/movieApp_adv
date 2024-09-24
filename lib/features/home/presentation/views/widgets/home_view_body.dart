@@ -23,7 +23,7 @@ class HomeViewBody extends StatelessWidget {
               ),
             ),
             verticalSpace(15),
-            Expanded(child: MovieCardBuilder()),
+            const Expanded(child: MovieCardBuilder()),
           ],
         ),
       ),

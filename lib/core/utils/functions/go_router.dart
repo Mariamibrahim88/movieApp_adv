@@ -3,6 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_app_adv/core/widgets/nav_bar.dart';
 import 'package:movie_app_adv/features/Auth/presentation/views/login_view.dart';
 import 'package:movie_app_adv/features/Auth/presentation/views/register_view.dart';
+import 'package:movie_app_adv/features/category/data/model/category_model.dart';
+import 'package:movie_app_adv/features/category/data/repo/category_repo_impl.dart';
+import 'package:movie_app_adv/features/category/presentation/manager/cubit/get_category_cubit.dart';
+import 'package:movie_app_adv/features/category/presentation/views/movies_by_category_view.dart';
 import 'package:movie_app_adv/features/home/data/repo/home_repo_impl.dart';
 import 'package:movie_app_adv/features/home/presentation/manager/Home_page_cubit/home_page_cubit.dart';
 import 'package:movie_app_adv/features/home/presentation/views/details_view.dart';
@@ -31,6 +35,20 @@ abstract class AppRouter {
       path: '/registerView',
       builder: (context, state) => const RegisterView(),
     ),
+    GoRoute(
+        path: '/MovieCardBuilderByCategories',
+        builder: (context, state) {
+          final movieByCategory = state.extra as String;
+          return BlocProvider(
+            create: (context) => GetCategoryCubit(getIt<CategoryRepoImpl>()
+              ..getMoviesByCategories(id: movieByCategory)),
+            child: MoviesByCategoryView(
+              categoryModel:
+                  CategoryModel(id: movieByCategory, name: '', image: ''),
+            ),
+          );
+        }),
+
     GoRoute(
       path: '/detailsView',
       builder: (context, state) {

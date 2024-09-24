@@ -18,3 +18,17 @@ final class GetCategoryFailure extends GetCategoryState {
 
   GetCategoryFailure(this.message);
 }
+
+final class GetMoviesByCategoriesLoading extends GetCategoryState {}
+
+final class GetMoviesByCategoriesSuccess extends GetCategoryState {
+  final List<MovieModel> movies;
+
+  GetMoviesByCategoriesSuccess(this.movies);
+}
+
+final class GetMoviesByCategoriesFailure extends GetCategoryState {
+  final String message;
+
+  GetMoviesByCategoriesFailure(this.message);
+}

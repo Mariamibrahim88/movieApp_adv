@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,14 +32,23 @@ class DetailsViewBody extends StatelessWidget {
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
-                    //state.movies.
-                    movies.image,
-                    //"assets/movie3.png",
-                    width: double.infinity,
-                    height: 200,
-                    fit: BoxFit.cover,
-                  ),
+                  child: CachedNetworkImage(
+                      imageUrl: movies.image,
+                      width: double.infinity,
+                      height: 200,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error)),
+                  // child: Image.network(
+                  //   //state.movies.
+                  //   movies.image,
+                  //   //"assets/movie3.png",
+                  //   width: double.infinity,
+                  //   height: 200,
+                  //   fit: BoxFit.cover,
+                  // ),
                 ),
               ),
               verticalSpace(10),
