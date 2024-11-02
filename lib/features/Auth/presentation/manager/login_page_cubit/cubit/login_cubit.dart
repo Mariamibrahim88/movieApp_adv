@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app_adv/core/database/cached_helper.dart';
+import 'package:movie_app_adv/core/utils/functions/service_locator.dart';
+import 'package:movie_app_adv/features/Auth/data/model/sign_in_model.dart';
 import 'package:movie_app_adv/features/Auth/data/repo/auth_repo.dart';
 
 part 'login_state.dart';
@@ -17,6 +20,8 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginInLoading());
     final result = await authRepo.signIn(
         email: emailController.text, password: passwordController.text);
+    // await getIt<CacheHelper>()
+    //     .saveData(key: 'email', value: emailController.text);
 
     result.fold(
       (Failure) => emit(LoginInFailure(Failure.message)),

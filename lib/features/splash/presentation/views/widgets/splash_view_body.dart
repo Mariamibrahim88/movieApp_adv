@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_app_adv/core/database/cached_helper.dart';
+import 'package:movie_app_adv/core/utils/functions/service_locator.dart';
 import 'package:movie_app_adv/features/splash/presentation/views/widgets/sliding_text.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -56,10 +58,19 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () async {
       // Get.to(() => const HomeView(),
       //     transition: Transition.fadeIn, duration: KTransitionDuration);
-      GoRouter.of(context).push('/Nav');
+
+      final email = await getIt<CacheHelper>().getData(key: 'email');
+      if (email != null) {
+        GoRouter.of(context).push('/Nav'); // Navigate to home view
+      } else {
+        animationController.forward(); // Show sliding animation
+        Future.delayed(const Duration(seconds: 1), () {
+          GoRouter.of(context).push('/loginView'); // Navigate to login view
+        });
+      }
     });
   }
 }

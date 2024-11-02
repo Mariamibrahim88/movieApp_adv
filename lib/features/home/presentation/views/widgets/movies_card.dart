@@ -46,8 +46,10 @@ class MoviesCard extends StatelessWidget {
                     height: 100.h,
                     width: 120.w,
                     fit: BoxFit.cover,
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
+                    placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(
+                      color: secColor,
+                    )),
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error),
                   ),

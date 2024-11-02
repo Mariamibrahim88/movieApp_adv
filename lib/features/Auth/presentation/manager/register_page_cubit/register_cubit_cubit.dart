@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:movie_app_adv/features/Auth/data/model/sign_up_model.dart';
 import 'package:movie_app_adv/features/Auth/data/repo/auth_repo.dart';
 
 part 'register_cubit_state.dart';
