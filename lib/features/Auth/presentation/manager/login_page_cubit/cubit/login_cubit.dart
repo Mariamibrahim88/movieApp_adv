@@ -20,8 +20,8 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginInLoading());
     final result = await authRepo.signIn(
         email: emailController.text, password: passwordController.text);
-    // await getIt<CacheHelper>()
-    //     .saveData(key: 'email', value: emailController.text);
+    await getIt<CacheHelper>()
+        .saveData(key: 'email', value: emailController.text);
 
     result.fold(
       (Failure) => emit(LoginInFailure(Failure.message)),
